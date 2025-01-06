@@ -17,16 +17,15 @@ const addUser = async (user) => {
     return result.insertId
 }
 
-const deleteUser  = async (userId) => {
-    const connection = await mysql.createConnection(dbConfig);
-    try {
-        const [result] = await connection.execute('DELETE FROM user WHERE id = ?', [userId]);
-        return result.affectedRows > 0; // Mengembalikan true jika pengguna berhasil dihapus
-    } catch (error) {
-        console.error('Error executing query:', error);
-        throw error;
-    } finally {
-        await connection.end();
-    }
-};
-module.exports = { getAllUsers, getUserById, addUser, deleteUser };
+const updateUserById = async (id, user) => {
+    const { name, email, phone } = user;
+    const [result] = await db.query('UPDATE users SET name=?, email=?, phone=? WHERE id=?', [name, email, phone, id]);
+    return result.affectedRows;
+}
+
+const deleteUserById = async (id) => {
+    const [result] = await db.query('DELETE FROM users WHERE id=?', id);
+    return result.affectedRows;
+}
+
+module.exports = { getAllUsers, getUserById, addUser, updateUserById, deleteUserById };

@@ -34,19 +34,28 @@ const addUser = async (req,res) => {
     }
 }
 
-const deleteUser  = async (req, res) => {
-    const userId = req.params.id; 
+const updateUserById = async (req, res) => {
     try {
-        const result = await userModel.deleteUser (userId);
-        if (result) {
-            return res.status(200).json({ message: `User  with ID ${userId} has been deleted.` });
-        } else {
-            return res.status(404).json({ message: `No user found with ID ${userId}.` });
-        }
-    } catch (error) {
-        console.error('Error deleting user:', error);
-        return res.status(500).json({ message: 'Internal Server Error' });
+        const user = await userModel.updateUserById(req.params.id, req.body);
+        if(!user) res.json({ message: 'User Not Found' });
+        res.json(user);
+    }
+    catch (error) {
+        console.log(error);
+        res.status(500).json({ message: 'Error Update User By Id' });
     }
 }
 
-module.exports = { getAllUsers, getUserById, addUser, deleteUser };
+const deleteUserById = async (req, res) => {
+    try {
+        const user = await userModel.deleteUserById(req.params.id);
+        if(!user) res.json({ message: 'User Not Found' });
+        res.json(user);
+    }
+    catch (error) {
+        console.log(error);
+        res.status(500).json({ message: 'Error Delete User By Id' });
+    }
+}
+
+module.exports = { getAllUsers, getUserById, addUser, updateUserById, deleteUserById };
