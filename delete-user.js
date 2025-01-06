@@ -1,5 +1,5 @@
 const { response } = require('express')
-fetch('http://localhost:3000/api/users/1',{
+fetch('http://localhost:3000/api/users/2',{
     method : 'DELETE',
     headers : {
         'Content-Type':'application/json'

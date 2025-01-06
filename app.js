@@ -8,7 +8,7 @@ const auth = require('./middlewares/auth')
 dotenv.config();
 const app = express();
 app.use(logger)
-app.use(auth)
+// app.use(auth)
 app.use(bodyParser.json())
 app.use('/api/users', userRouter)
 

@@ -2,11 +2,11 @@ const { response } = require('express')
 fetch('http://localhost:3000/api/users',{
     method : 'POST',
     headers : {
-        'Content-Type':'application/json'
+        'Content-Type':'application/json',
     },
     body : JSON.stringify({
-        name : 'Agus',
-        email : 'agus@gmail.com',
+        name : 'Lagi Cuyyyyyy',
+        email : 'cobacoba@gmail.com',
         phone : '087654322'
     })
 })

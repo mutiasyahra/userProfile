@@ -11,10 +11,9 @@ const getUserById = async (id) => {
 }
 
 const addUser = async (user) => {
-    const {name,email,phone} = user
-    const [result] = await 
-    db.query('insert into user (name,email,phone) values(?,?,?)', [name,email,phone])
-    return result.insertId
+    const { name, email, phone } = user;
+    const [result] = await db.query('INSERT INTO users (name, email, phone) VALUES (?, ?, ?)', [name, email, phone]);
+    return result.insertId;
 }
 
 const updateUserById = async (id, user) => {
